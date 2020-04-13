@@ -18,7 +18,7 @@ const calcSevereCasesByRequestedTime = (infectionsByRequestedTime) => Math.round
 const calcHospitalBedsByRequestedTime = (
   totalHospitalBeds,
   severeCasesByRequestedTime
-) => Math.round((0.35 * totalHospitalBeds) - severeCasesByRequestedTime);
+) => Math.round(0.35 * totalHospitalBeds) - severeCasesByRequestedTime;
 
 const calcCasesForICUByRequestedTime = (infectionsByRequestedTime) => Math.round(0.05 * infectionsByRequestedTime);
 
