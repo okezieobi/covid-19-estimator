@@ -25,14 +25,15 @@
     "express": ""
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
+    "@babel/node": "",
     "@babel/preset-env": "^7.9.0",
     "babel-jest": "^25.2.0",
-    "jest": "^25.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.20.1",
-    "@babel/node": "",
+    "jest": "^25.2.0",
     "nodemon": ""
   },
   "browserslist": [
