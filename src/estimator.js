@@ -18,7 +18,7 @@ const calcSevereCasesByRequestedTime = (infectionsByRequestedTime) => Math.trunc
 const calcHospitalBedsByRequestedTime = (
   totalHospitalBeds,
   severeCasesByRequestedTime
-) => Math.trunc(0.35 * totalHospitalBeds) - severeCasesByRequestedTime;
+) => Math.trunc((0.35 * totalHospitalBeds) - severeCasesByRequestedTime);
 
 const calcCasesForICUByRequestedTime = (infectionsByRequestedTime) => Math.trunc(0.05 * infectionsByRequestedTime);
 
