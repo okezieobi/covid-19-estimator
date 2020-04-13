@@ -26,15 +26,21 @@ const calcDollarsInFlight = (
   infectionsByRequestedTime,
   avgDailyIncome,
   avgDailyIncomePopulation,
-  period
-) => parseFloat(
-  (
-    infectionsByRequestedTime
+  period,
+  periodType
+) => {
+  let estimatedTime;
+  if (periodType === 'weeks') estimatedTime = period * 7;
+  if (periodType === 'months') estimatedTime = period * 30;
+  return parseFloat(
+    (
+      infectionsByRequestedTime
       * avgDailyIncomePopulation
       * avgDailyIncome
-      * period
-  ).toFixed(2)
-);
+      * estimatedTime
+    ).toFixed(2)
+  );
+};
 
 const covid19ImpactEstimator = ({
   region: {
@@ -113,13 +119,15 @@ const covid19ImpactEstimator = ({
     impact.infectionsByRequestedTime,
     avgDailyIncomeInUSD,
     avgDailyIncomePopulation,
-    timeToElapse
+    timeToElapse,
+    periodType
   );
   severeImpact.dollarsInFlight = calcDollarsInFlight(
     severeImpact.infectionsByRequestedTime,
     avgDailyIncomeInUSD,
     avgDailyIncomePopulation,
-    timeToElapse
+    timeToElapse,
+    periodType
   );
 
   return {
