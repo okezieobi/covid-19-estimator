@@ -35,7 +35,7 @@ const calcDollarsInFlight = (
   if (periodType === 'weeks') estimatedTime = period * 7;
   else if (periodType === 'months') estimatedTime = period * 30;
   else estimatedTime = period;
-  return Math.trunc(infectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncome * estimatedTime);
+  return Math.trunc((infectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncome) / estimatedTime);
 };
 
 const covid19ImpactEstimator = ({
