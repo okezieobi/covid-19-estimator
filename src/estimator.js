@@ -8,7 +8,7 @@ const calcInfectionsByRequestedTime = (
 ) => {
   if (periodType === 'weeks') return currentlyInfected * (2 ** ((period * 7) / 3));
   if (periodType === 'months') return currentlyInfected * (2 ** ((period * 30) / 3));
-  return Math.round(currentlyInfected * (2 ** (period / 3)));
+  return currentlyInfected * (2 ** (Math.round(period / 3)));
 };
 
 const calcSevereCasesByRequestedTime = (infectionsByRequestedTime) => Math.round(infectionsByRequestedTime * 0.15);
