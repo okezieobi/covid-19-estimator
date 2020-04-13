@@ -10,19 +10,19 @@ const calcInfectionsByRequestedTime = (
   if (periodType === 'weeks') estimatedTime = (period * 7) / 3;
   else if (periodType === 'months') estimatedTime = (period * 30) / 3;
   else if (periodType === 'days') estimatedTime = period / 3;
-  return Math.round(currentlyInfected * 2 ** estimatedTime);
+  return currentlyInfected * (2 ** estimatedTime);
 };
 
-const calcSevereCasesByRequestedTime = (infectionsByRequestedTime) => Math.round(infectionsByRequestedTime * 0.15);
+const calcSevereCasesByRequestedTime = (infectionsByRequestedTime) => infectionsByRequestedTime * 0.15;
 
 const calcHospitalBedsByRequestedTime = (
   totalHospitalBeds,
   severeCasesByRequestedTime
-) => Math.round(0.35 * totalHospitalBeds) - severeCasesByRequestedTime;
+) => (0.35 * totalHospitalBeds) - severeCasesByRequestedTime;
 
-const calcCasesForICUByRequestedTime = (infectionsByRequestedTime) => Math.round(0.05 * infectionsByRequestedTime);
+const calcCasesForICUByRequestedTime = (infectionsByRequestedTime) => 0.05 * infectionsByRequestedTime;
 
-const calcCasesForVentilatorsByRequestedTime = (infectionsByRequestedTime) => Math.round(0.02 * infectionsByRequestedTime);
+const calcCasesForVentilatorsByRequestedTime = (infectionsByRequestedTime) => 0.02 * infectionsByRequestedTime;
 
 const calcDollarsInFlight = (
   infectionsByRequestedTime,
@@ -35,14 +35,7 @@ const calcDollarsInFlight = (
   if (periodType === 'weeks') estimatedTime = period * 7;
   if (periodType === 'months') estimatedTime = period * 30;
   if (periodType === 'days') estimatedTime = period;
-  return parseFloat(
-    (
-      infectionsByRequestedTime
-      * avgDailyIncomePopulation
-      * avgDailyIncome
-      * estimatedTime
-    ).toFixed(2)
-  );
+  return (infectionsByRequestedTime * avgDailyIncomePopulation) * avgDailyIncome * estimatedTime;
 };
 
 const covid19ImpactEstimator = ({
