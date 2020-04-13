@@ -10,7 +10,7 @@ const calcInfectionsByRequestedTime = (
   if (periodType === 'weeks') estimatedTime = (period * 7) / 3;
   else if (periodType === 'months') estimatedTime = (period * 30) / 3;
   else estimatedTime = period / 3;
-  return Math.trunc(currentlyInfected * 2 ** estimatedTime);
+  return currentlyInfected * 2 ** Math.trunc(estimatedTime);
 };
 
 const calcSevereCasesByRequestedTime = (infectionsByRequestedTime) => Math.trunc(infectionsByRequestedTime * 0.15);
@@ -18,7 +18,7 @@ const calcSevereCasesByRequestedTime = (infectionsByRequestedTime) => Math.trunc
 const calcHospitalBedsByRequestedTime = (
   totalHospitalBeds,
   severeCasesByRequestedTime
-) => Math.trunc((0.35 * totalHospitalBeds) - severeCasesByRequestedTime);
+) => Math.trunc(0.35 * totalHospitalBeds) - severeCasesByRequestedTime;
 
 const calcCasesForICUByRequestedTime = (infectionsByRequestedTime) => Math.trunc(0.05 * infectionsByRequestedTime);
 
@@ -33,8 +33,8 @@ const calcDollarsInFlight = (
 ) => {
   let estimatedTime;
   if (periodType === 'weeks') estimatedTime = period * 7;
-  if (periodType === 'months') estimatedTime = period * 30;
-  if (periodType === 'days') estimatedTime = period;
+  else if (periodType === 'months') estimatedTime = period * 30;
+  else estimatedTime = period;
   return Math.trunc(infectionsByRequestedTime * avgDailyIncomePopulation * avgDailyIncome * estimatedTime);
 };
 
