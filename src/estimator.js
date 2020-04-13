@@ -32,6 +32,7 @@ const calcDollarsInFlight = (
   let estimatedTime;
   if (periodType === 'weeks') estimatedTime = period * 7;
   if (periodType === 'months') estimatedTime = period * 30;
+  if (periodType === 'days') estimatedTime = period;
   return parseFloat(
     (
       infectionsByRequestedTime
