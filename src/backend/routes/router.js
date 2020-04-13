@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import logsRouter from './logger';
-import estimateRouter from './estimator';
-import estimateMiddleware from '../middleware';
-import Logs from '../logger';
+import logsRouter from './logs';
+import estimateRouter from './estimates';
+import estimateMiddleware from '../estimates';
+import Logs from '../logs';
 
 const router = Router();
 const { createOne, readAll } = Logs;
