@@ -8,8 +8,8 @@ const calcInfectionsByRequestedTime = (
 ) => {
   let estimatedTime;
   if (periodType === 'weeks') estimatedTime = (period * 7) / 3;
-  if (periodType === 'months') estimatedTime = (period * 30) / 3;
-  if (periodType === 'days') estimatedTime = period / 3;
+  else if (periodType === 'months') estimatedTime = (period * 30) / 3;
+  else estimatedTime = period / 3;
   return Math.round(currentlyInfected * (2 ** estimatedTime));
 };
 
