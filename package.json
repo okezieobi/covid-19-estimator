@@ -11,7 +11,7 @@
     "lint": "eslint ./src/",
     "dev": "nodemon --exec babel-node src/backend/index.js",
     "release": "npm run clean && npm run build-app && npm run start",
-    "clean": "rm -rf dist/backend && mkdir dist/backend",
+    "clean": "rm -rf dist/backend && mkdir dist && mkdir dist/backend",
     "build": "npm run clean && npm run build-app",
     "build-app": "babel src/backend -s -d dist/backend --presets=@babel/env",
     "start": "node dist/backend/index.js"
