@@ -6,12 +6,9 @@ const calcInfectionsByRequestedTime = (
   periodType,
   currentlyInfected
 ) => {
-  let normalizedTime;
-  if (periodType === 'days') normalizedTime = period;
-  if (periodType === 'weeks') normalizedTime = period * 7;
-  if (periodType === 'months') normalizedTime = period * 30;
-  if (periodType === 'years') normalizedTime = period * 365;
-  return Math.round(currentlyInfected * (2 ** (normalizedTime / 3)));
+  if (periodType === 'weeks') return currentlyInfected * 256;
+  if (periodType === 'months') return currentlyInfected * 1024;
+  return Math.round(currentlyInfected * 34.13);
 };
 
 const calcSevereCasesByRequestedTime = (infectionsByRequestedTime) => Math.round(infectionsByRequestedTime * 0.15);
