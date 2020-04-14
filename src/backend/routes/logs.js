@@ -7,6 +7,6 @@ export default (router) => {
       }) => `${method}  ${path}  ${status}  ${processTime}ms`
     );
     const messages = logMessageObjects.join('\r\n');
-    res.status(200).send(messages);
+    res.status(200).type('text').send(messages);
   });
 };
