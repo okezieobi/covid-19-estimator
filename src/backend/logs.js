@@ -12,10 +12,11 @@ export default class Logs {
     });
   }
 
-  static createOne({ path }, { locals: { logData, reqProcessingStart } }, next) {
+  static createOne({ path, method }, { locals: { logData, reqProcessingStart } }, next) {
     logData.logs.push({
       path,
-      timestamp: Date.now(),
+      method,
+      status: 201,
       processTime: Date.now() - reqProcessingStart
     });
     const newData = JSON.stringify(logData);
