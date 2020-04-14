@@ -4,6 +4,6 @@ export default (router) => {
       ({ path, timestamp, processTime }) => `${timestamp}  ${path}  done in ${processTime} seconds`
     );
     const messages = logMessageObjects.join('\r\n');
-    res.status(200).send(messages);
+    res.status(200).type('text/html').send(messages);
   });
 };
