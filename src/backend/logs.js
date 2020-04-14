@@ -7,16 +7,18 @@ export default class Logs {
       if (error) next(error);
       else {
         res.locals.logData = JSON.parse(data);
+        res.locals.reqProcessingStart = Date.now();
         next();
       }
     });
   }
 
-  static createOne({ path, method }, { locals: { logData, reqProcessingStart } }, next) {
+  static createOne({ path, method },
+    { locals: { logData, reqProcessingStart, statusCode } }, next) {
     logData.logs.push({
       path,
       method,
-      status: 201,
+      status: statusCode || 200,
       processTime: Date.now() - reqProcessingStart
     });
     const newData = JSON.stringify(logData);
