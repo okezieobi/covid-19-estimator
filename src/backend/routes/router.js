@@ -1,11 +1,14 @@
 import { Router } from 'express';
-import logsRoutes from './logs';
 import estimateRoutes from './estimates';
+import { readAll, createOne } from '../logs';
+import logRoutes from './logs';
 
-const logsRouter = Router();
-const estimatesRouter = Router();
+const router = Router();
 
-logsRoutes(logsRouter);
-estimateRoutes(estimatesRouter);
+router.use(readAll);
+estimateRoutes(router);
+router.use(createOne);
+router.use(readAll);
+logRoutes(router);
 
-export default (app) => app.use('/api/v1', logsRouter, estimatesRouter);
+export default (app) => app.use('/api/v1', router);

@@ -1,3 +1,1 @@
-{
-    "logs": []
-}
+{"logs":[{"path":"/on-covid-19/logs","method":"GET","status":200,"processTime":1},{"path":"/on-covid-19","method":"POST","status":201,"processTime":20},{"path":"/on-covid-19/logs","method":"GET","status":200,"processTime":1}]}

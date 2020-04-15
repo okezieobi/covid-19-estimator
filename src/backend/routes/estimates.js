@@ -1,16 +1,19 @@
-import estimates from '../estimates';
-import Logs from '../logs';
+import estimator from '../../estimator';
 
 export default (router) => {
-  const { createOne, readAll } = Logs;
+  router.post('/on-covid-19', ({ body }, res, next) => {
+    res.locals.statusCode = 201;
+    res.status(201).json(estimator(body));
+    next();
+  });
 
-  router.use(readAll, estimates);
+  router.post('/on-covid-19/json', ({ body }, res) => {
+    res.locals.statusCode = 201;
+    res.status(201).json(estimator(body));
+  });
 
-  router.post('/on-covid-19', (req, res) => res.status(201).json(res.locals.estimate));
-
-  router.post('/on-covid-19/json', (req, res) => res.status(201).json(res.locals.estimate));
-
-  router.post('/on-covid-19/xml', (req, res) => res.status(201).type('xml').send(res.locals.estimate));
-
-  router.use(createOne);
+  router.post('/on-covid-19/xml', ({ body }, res) => {
+    res.locals.statusCode = 201;
+    res.status(201).type('xml').send(estimator(body));
+  });
 };
